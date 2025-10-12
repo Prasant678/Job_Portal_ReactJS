@@ -24,7 +24,7 @@ const SavedJob = () => {
   }
   return (
     <div>
-      <h1 className='gredient-title font-extrabold text-5xl sm:text-6xl text-center pb-8'>Saved Jobs</h1>
+      <h1 className='gredient-title font-semibold text-4xl sm:text-5xl text-center pt-7 sm:pb-3'>Saved Jobs</h1>
 
       {loadingSavedJobs === false && (
         <div className='mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-4'>

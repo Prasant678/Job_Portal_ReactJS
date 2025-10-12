@@ -16,6 +16,8 @@ import { addNewJob } from '@/api/apiJobs';
 import AddCompany from '@/components/AddCompany';
 import { getLocations } from '@/api/apiLocation';
 import AddLocation from '@/components/AddLocation';
+import { getExperiences } from '@/api/apiExperience';
+import AddExperience from '@/components/AddExpeience';
 
 const schema = z.object({
   title: z.string().min(1, { message: "Title is Required" }),
@@ -23,6 +25,7 @@ const schema = z.object({
   location: z.string().min(1, { message: "Select a Location" }),
   company_id: z.string().min(1, { message: "Select or Add a new Company" }),
   requirements: z.string().min(1, { message: "Requirements are Required" }),
+  experience: z.string().min(1, { message: "Select Experience" }),
 });
 
 const PostJob = () => {
@@ -35,6 +38,7 @@ const PostJob = () => {
       location: "",
       company_id: "",
       requirements: "",
+      experience: "",
     },
     resolver: zodResolver(schema),
   });
@@ -51,6 +55,13 @@ const PostJob = () => {
   useEffect(() => {
     if (isLoaded)
       fnLocations();
+  }, [isLoaded]);
+
+  const { fn: fnExperiences, data: experience } = useFetch(getExperiences);
+
+  useEffect(() => {
+    if (isLoaded)
+      fnExperiences();
   }, [isLoaded]);
 
   const {
@@ -82,8 +93,8 @@ const PostJob = () => {
   }
   return (
     <div>
-      <h1 className='gredient-title font-extrabold text-5xl sm:text-6xl text-center pb-8'>Post a Job</h1>
-      <form className='flex flex-col gap-4 p-4 pb-0' onSubmit={handleSubmit(onSubmit)}>
+      <h1 className='gredient-title font-extrabold text-4xl sm:text-5xl text-center py-7'>Post a Job</h1>
+      <form className='flex flex-col gap-4 sm:p-4 pb-0' onSubmit={handleSubmit(onSubmit)}>
         <Input placeholder="Job Title" {...register("title")} />
         {errors.title && <p className='text-red-500'>{errors.title.message}</p>}
         <Textarea placeholder="Job Description" {...register("description")} />
@@ -91,25 +102,47 @@ const PostJob = () => {
           <p className='text-red-500'>{errors.description.message}</p>
         )}
 
-        <div className='flex gap-3 items-center'>
-          <Controller name='location' control={control} render={({ field }) => (
-            <Select value={field.value} onValueChange={field.onChange}>
-              <SelectTrigger>
-                <SelectValue placeholder="Filter by location">
-                  {field.value ? locations?.find((cit) => cit.id === Number(field.value))?.city : "City"}
-                </SelectValue>
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  {locations?.map(({ city, id }) => {
-                    return (
-                      <SelectItem key={city} value={id}>{city} </SelectItem>
-                    )
-                  })}
-                </SelectGroup>
-              </SelectContent>
-            </Select>)} />
-          <AddLocation fetchLocations={fnLocations} />
+        <div className='flex flex-col sm:flex-row gap-3 items-center'>
+          <div className='w-full flex gap-3'>
+            <Controller name='location' control={control} render={({ field }) => (
+              <Select value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Filter by location">
+                    {field.value ? locations?.find((cit) => cit.id === Number(field.value))?.city : "City"}
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {locations?.map(({ city, id }) => {
+                      return (
+                        <SelectItem key={city} value={id}>{city} </SelectItem>
+                      )
+                    })}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>)} />
+            <AddLocation fetchLocations={fnLocations} />
+          </div>
+          <div className='w-full flex gap-3'>
+            <Controller name='experience' control={control} render={({ field }) => (
+              <Select value={field.value} onValueChange={field.onChange}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Select Experience">
+                    {field.value ? experience?.find((exp) => exp.id === Number(field.value))?.exp : "exp"}
+                  </SelectValue>
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    {experience?.map(({ exp, id }) => {
+                      return (
+                        <SelectItem key={exp} value={id}>{exp} </SelectItem>
+                      )
+                    })}
+                  </SelectGroup>
+                </SelectContent>
+              </Select>)} />
+            <AddExperience fetchExperiences={fnExperiences} />
+          </div>
         </div>
         <div className='flex gap-3 items-center'>
           <Controller name='company_id' control={control} render={({ field }) => (

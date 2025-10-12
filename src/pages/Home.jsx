@@ -16,7 +16,7 @@ const Home = () => {
             <main className='flex flex-col gap-10 sm:gap-20 py-10 sm:py-20'>
                 <section className='text-center'>
                     <h1 className='flex flex-col justify-center items-center gredient-title text-4xl font-extrabold sm:text-6xl lg:text-7xl tracking-tighter py-4'>find your dream Job <span className='gap-3 sm:gap-6'>and get hired</span></h1>
-                    <p className='text-gray-300 sm:mt-4 text-sm sm:text-xl'>
+                    <p className='text-gray-300 sm:mt-4 text-sm sm:text-xl tracking-wider'>
                         Explore thoushands of job listings or find the perfect candidate
                     </p>
                 </section>
@@ -46,17 +46,17 @@ const Home = () => {
                 <section className='grid grid-cols-1 sm:grid-cols-2 gap-4'>
                     <Card>
                         <CardHeader>
-                            <CardTitle>For JobSeekers</CardTitle>
+                            <CardTitle className="tracking-wider">For JobSeekers</CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="tracking-widest">
                             Search and Apply for jobs , Track Application and More.
                         </CardContent>
                     </Card>
                     <Card>
                         <CardHeader>
-                            <CardTitle>For Employees</CardTitle>
+                            <CardTitle className="tracking-wider">For Employees</CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="tracking-widest">
                             Post Jobs, manage Application, and find the best candidate.
                         </CardContent>
                     </Card>
@@ -65,8 +65,8 @@ const Home = () => {
                 <Accordion type="single" collapsible>
                     {faqs.map((element, index) => {
                         return (<AccordionItem key={index} value={`item-${index + 1}`}>
-                            <AccordionTrigger className="text-lg">{element.question}</AccordionTrigger>
-                            <AccordionContent className="text-sm">
+                            <AccordionTrigger className="text-lg tracking-wide">{element.question}</AccordionTrigger>
+                            <AccordionContent className="text-sm tracking-wider">
                                 {element.answer}
                             </AccordionContent>
                         </AccordionItem>)

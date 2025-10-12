@@ -15,54 +15,54 @@ import { Button } from './ui/button';
 import { Input } from './ui/input';
 import useFetch from '@/hooks/useFetch';
 import { BarLoader } from 'react-spinners';
-import { addNewLocation } from '@/api/apiLocation';
 import { Label } from '@radix-ui/react-label';
+import { addNewExperience } from '@/api/apiExperience';
 
 
 const schema = z.object({
-  city: z.string().min(1, { message: "City is Required" })
+  exp: z.string().min(1, { message: "Experience Required!" })
 });
 
-const AddLocation = ({ fetchLocations }) => {
+const AddExperience = ({ fetchExperiences }) => {
 
   const { register, handleSubmit, formState: { errors } } = useForm({
     resolver: zodResolver(schema)
   })
 
-  const { loading: loadingAddLocation, error: errorAddLocation, data: dataAddLocation, fn: fnAddLocation,} = useFetch(addNewLocation);
+  const { loading: loadingAddExperience, error: errorAddExperience, data: dataAddExperience, fn: fnAddExperience,} = useFetch(addNewExperience);
 
   const onSubmit = (data) =>{
-    fnAddLocation({
+    fnAddExperience({
       ...data
     })
   };
 
   useEffect(()=>{
-    if (dataAddLocation?.length > 0) fetchLocations();
-  }, [loadingAddLocation]);
+    if (dataAddExperience?.length > 0) fetchExperiences();
+  }, [loadingAddExperience]);
   return (
     <div className='sm:mt-0.5'>
       <Drawer>
         <DrawerTrigger>
           <Button type="button" size="sm" variant="blue">
-            Add Location
+            Add Experience
           </Button>
         </DrawerTrigger>
         <DrawerContent className="mx-8">
           <DrawerHeader>
-            <DrawerTitle>Add a New Location</DrawerTitle>
+            <DrawerTitle>Add new Experience</DrawerTitle>
           </DrawerHeader>
           <form className='flex gap-2 p-4 pb-0'>
-            <Label>City and state name with comma </Label>
-            <Input placeholder="eg. Bengalore, Karnataka" {...register("city")} />
-            {errors.city && <p className='text-red-500'>{errors.city.message}</p>}
+            <Label>Experience with middle highphane </Label>
+            <Input placeholder="eg. 0 - 1, Fresher or Experienced" {...register("exp")} />
+            {errors.exp && <p className='text-red-500'>{errors.exp.message}</p>}
             <Button type="button" onClick={handleSubmit(onSubmit)} variant="destructive" className="w-40">ADD</Button>
           </form>
 
-          {errorAddLocation?.message && (
-            <p className='text-red-500'>{errorAddLocation?.message}</p>
+          {errorAddExperience?.message && (
+            <p className='text-red-500'>{errorAddExperience?.message}</p>
           )}
-          {loadingAddLocation && <BarLoader width={"100%"} color='#016fb9' className='mt-4'/>}
+          {loadingAddExperience && <BarLoader width={"100%"} color='#016fb9' className='mt-4'/>}
           <DrawerFooter>
             <DrawerClose asChild>
               <Button variant="secondary" type="button">Cancel</Button>
@@ -74,4 +74,4 @@ const AddLocation = ({ fetchLocations }) => {
   )
 }
 
-export default AddLocation
+export default AddExperience;

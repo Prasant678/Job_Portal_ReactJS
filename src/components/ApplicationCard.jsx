@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { useUser } from '@clerk/clerk-react';
 
 const ApplicationCard = ({ application, isCandidate = false }) => {
-const { user } = useUser();
+    const { user } = useUser();
 
     const handleDownload = () => {
         const link = document.createElement("a");
@@ -28,27 +28,30 @@ const { user } = useUser();
             <CardHeader className='p-4'>
                 <CardTitle className='flex justify-between font-bold items-center'>
                     {isCandidate
-                        ? `${application?.job?.title} at ${application?.job?.company?.name}`
+                        ? <div className='flex flex-col sm:flex-row gap-2'>
+                            <p>{`${application?.job?.title}`}</p>
+                            <p>{`at ${application?.job?.company?.name}`}</p>
+                        </div>
                         : application?.name}
                     {user?.unsafeMetadata?.role === "recruiter" ? <Download size={18} className='bg-transparent text-white h-8 w-8 p-1 cursor-pointer' onClick={handleDownload} /> : ""}
                 </CardTitle>
             </CardHeader>
             <CardContent className='flex flex-col gap-4 flex-1'>
-                <div className='flex flex-col md:flex-row justify-between'>
-                    <div className='flex gap-2 items-center'>
+                <div className='flex flex-col md:flex-row gap-3 justify-between'>
+                    <div className='flex gap-2 items-center tracking-wider'>
                         <BriefcaseBusiness size={15} /> {application?.experience} years of experience
                     </div>
-                    <div className='flex gap-2 items-center'>
+                    <div className='flex gap-2 items-center tracking-wider'>
                         <School size={15} /> {application?.education}
                     </div>
-                    <div className='flex gap-2 items-center'>
-                        <Boxes size={15} /> Skills {application?.skills}
-                    </div>
+                </div>
+                <div className='flex gap-2 items-start tracking-wider'>
+                    <Boxes size={15} className='mt-1' />Skills: {application?.skills}
                 </div>
                 <hr />
             </CardContent>
-            <CardFooter className='flex justify-between'>
-                <span>{new Date(application?.created_at).toLocaleString()}</span>
+            <CardFooter className='flex flex-col sm:flex-row justify-between tracking-wider gap-2'>
+                <span>Applied: {new Date(application?.created_at).toLocaleString()}</span>
                 {isCandidate ? (
                     <span className='capitalize font-bold'>Status: {application?.status}</span>
                 ) : (
