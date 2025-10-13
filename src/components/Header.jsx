@@ -28,7 +28,7 @@ const Header = () => {
         <>
             <nav className='pb-4 flex justify-between items-center pt-6'>
                 <Link>
-                    <img className='sm:h-12 h-10 w-full' src="public/Untitled design.png" alt="" />
+                    <img className='sm:h-12 h-10 w-full' src="logo.png" alt="" />
                 </Link>
 
                 <div className='flex gap-4'>
