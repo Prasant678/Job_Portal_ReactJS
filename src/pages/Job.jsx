@@ -40,7 +40,7 @@ const Job = () => {
     <div className='flex flex-col sm:gap-6 gap-4 sm:mt-12 mt-6'>
       <div className='flex flex-col-reverse gap-6 md:flex-row justify-between items-center'>
         <h1 className='gredient-title font-semibold sm:font-bold tracking-wide sm:tracking-widest sm:pb-3 pb-0 text-3xl sm:text-5xl'>{job?.title}</h1>
-        <img src={job?.company?.logo_url} className='sm:h-12 h-10 mt-7 sm:mt-0' alt={job?.title} />
+        <img src={job?.company?.logo_url} className='sm:h-12 h-10 mt-7 sm:mt-0 max-w-60' alt={job?.title} />
       </div>
       <div className='flex flex-col sm:flex-row gap-3.5 sm:gap-0 justify-between mt-6 sm:mt-0'>
         <div className='flex flex-col gap-2'>

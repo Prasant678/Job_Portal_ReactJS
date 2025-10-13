@@ -66,7 +66,7 @@ const JobCard = ({ job,
                             <MapPin size={15} /> <p className='text-xs tracking-[2px] mt-0.5'>{job.location && job.location.city}</p>
                         </div>
                     </div>
-                    {job.company && <img src={job.company.logo_url} className='h-6 mt-3' />}
+                    {job.company && <img src={job.company.logo_url} className='h-6 mt-3 max-w-32' />}
                 </div>
                 <hr className='my-[-5px]'/>
                 <p className='text-[15px] font-extralight tracking-[0.9px]'>{job.description.substring(0, job.description.indexOf("."))}</p>
