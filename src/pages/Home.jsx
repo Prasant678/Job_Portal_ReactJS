@@ -24,15 +24,15 @@ const Home = () => {
                     <Link to={'/jobs'}>
                         <Button variant='blue' size="xl">Find Jobs</Button>
                     </Link>
-                    { user?.unsafeMetadata?.role === "recruiter" && (<Link to={'/post-job'}>
-                            <Button variant='destructive' size='xl'>
-                                Post a Job
-                            </Button>
-                        </Link> )}
+                    {user?.unsafeMetadata?.role === "recruiter" && (<Link to={'/post-job'}>
+                        <Button variant='destructive' size='xl'>
+                            Post a Job
+                        </Button>
+                    </Link>)}
                 </div>
                 <Carousel
                     plugins={[Autoplay({ delay: 2000 })]}
-                    className="w-full py-10"
+                    className="w-full py-10 -z-10"
                 >
                     <CarouselContent className='flex gap-5 sm:gap-20 items-center'>
                         {companies.map(element => {
