@@ -25,7 +25,10 @@ const CreatedApplications = () => {
 
     const startIndex = (page - 1) * applicationsPerPage;
     const endIndex = startIndex + applicationsPerPage;
-    const paginatedApplications = applications?.slice(startIndex, endIndex) || [];
+    const sortedApplications = applications
+        ? [...applications].sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+        : [];
+    const paginatedApplications = sortedApplications.slice(startIndex, endIndex) || [];
     const totalPages = Math.ceil((applications?.length || 0) / applicationsPerPage);
 
     return (

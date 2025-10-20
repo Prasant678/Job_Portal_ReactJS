@@ -42,7 +42,10 @@ const Job = () => {
 
   const startIndex = (page - 1) * applicationsPerPage;
   const endIndex = startIndex + applicationsPerPage;
-  const paginatedApplications = job?.applications?.slice(startIndex, endIndex) || [];
+  const sortedApplications = job?.applications
+    ? [...job.applications].sort((a, b) => new Date(b.applied_at) - new Date(a.applied_at))
+    : [];
+  const paginatedApplications = sortedApplications.slice(startIndex, endIndex) || [];
   const totalPages = Math.ceil((job?.applications?.length || 0) / applicationsPerPage);
   return (
     <div className='flex flex-col sm:gap-6 gap-4 sm:mt-12 mt-6'>

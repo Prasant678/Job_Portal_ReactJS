@@ -25,7 +25,10 @@ const CreatedJobs = () => {
 
   const startIndex = (page - 1) * jobsPerPage;
   const endIndex = startIndex + jobsPerPage;
-  const paginatedJobs = createdJobs?.slice(startIndex, endIndex) || [];
+  const sortedJobs = createdJobs
+    ? [...createdJobs].sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    : [];
+  const paginatedJobs = sortedJobs.slice(startIndex, endIndex) || [];
   const totalPages = Math.ceil((createdJobs?.length || 0) / jobsPerPage);
 
   return (

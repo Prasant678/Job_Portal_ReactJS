@@ -192,13 +192,15 @@ const JobListing = () => {
         <>
           <div className="mt-8 grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {jobsData?.data?.length ? (
-              jobsData.data.map((job) => (
-                <JobCard
-                  key={job.id}
-                  job={job}
-                  savedInit={job.saved.length > 0}
-                />
-              ))
+              [...jobsData.data]
+                .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+                .map((job) => (
+                  <JobCard
+                    key={job.id}
+                    job={job}
+                    savedInit={job.saved.length > 0}
+                  />
+                ))
             ) : (
               <div>No Jobs Found</div>
             )}
