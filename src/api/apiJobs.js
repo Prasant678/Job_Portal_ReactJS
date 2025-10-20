@@ -1,33 +1,28 @@
 import supabaseClient from "@/utils/supabase";
 
-export async function getJobs(token, { location, company_id, searchQuery, experience}) {
-    const supabase = await supabaseClient(token)
+export async function getJobs(token, { location, company_id, searchQuery, experience, page = 1, limit = 6 }) {
+  const supabase = await supabaseClient(token);
 
-    let Query = supabase.from("jobs").select("*, company:companies(name, logo_url), saved: saved_jobs(id), location: locations(city), experience: experiences(exp)")
+  const offset = (page - 1) * limit;
 
-    if (location) {
-        Query = Query.eq("location", location);
-    }
+  let Query = supabase
+    .from("jobs")
+    .select("*, company:companies(name, logo_url), saved: saved_jobs(id), location: locations(city), experience: experiences(exp)", { count: "exact" }) // ✅ count total jobs
+    .range(offset, offset + limit - 1); // ✅ pagination range
 
-    if (experience) {
-        Query = Query.eq("experience", experience);
-    }
+  if (location) Query = Query.eq("location", location);
+  if (experience) Query = Query.eq("experience", experience);
+  if (company_id) Query = Query.eq("company_id", company_id);
+  if (searchQuery) Query = Query.ilike("title", `%${searchQuery}%`);
 
-    if (company_id) {
-        Query = Query.eq("company_id", company_id);
-    }
+  const { data, count, error } = await Query;
 
-    if (searchQuery) {
-        Query = Query.ilike("title", `%${searchQuery}%`);
-    }
+  if (error) {
+    console.error("Error fetching jobs:", error);
+    return { data: [], count: 0 };
+  }
 
-    const { data, error } = await Query
-
-    if (error) {
-        console.error("Error fetching jobs:", error);
-        return null;
-    }
-    return data;
+  return { data, count }; // ✅ return total count
 }
 
 export async function saveJob(token, { alreadySaved}, saveData) {

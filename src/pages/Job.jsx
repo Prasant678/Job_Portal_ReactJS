@@ -5,14 +5,17 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import useFetch from '@/hooks/useFetch';
 import { useUser } from '@clerk/clerk-react'
 import MDEditor from '@uiw/react-md-editor';
-import { Briefcase, BriefcaseBusiness, DoorClosed, DoorOpen, MapPin, UserRound } from 'lucide-react';
-import React, { useEffect } from 'react'
+import { BriefcaseBusiness, DoorClosed, DoorOpen, MapPin, UserRound } from 'lucide-react';
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { BarLoader } from 'react-spinners';
+import Pagination from '@/components/Pagination';
 
 const Job = () => {
   const { isLoaded, user } = useUser();
   const { id } = useParams();
+  const [page, setPage] = useState(1);
+  const applicationsPerPage = 10;
 
   const {
     loading: loadingJob,
@@ -36,6 +39,11 @@ const Job = () => {
   if (!isLoaded || loadingJob) {
     return <BarLoader className='mb-4' width={"100%"} color='#016fb9' />
   }
+
+  const startIndex = (page - 1) * applicationsPerPage;
+  const endIndex = startIndex + applicationsPerPage;
+  const paginatedApplications = job?.applications?.slice(startIndex, endIndex) || [];
+  const totalPages = Math.ceil((job?.applications?.length || 0) / applicationsPerPage);
   return (
     <div className='flex flex-col sm:gap-6 gap-4 sm:mt-12 mt-6'>
       <div className='flex flex-col-reverse gap-6 md:flex-row justify-between items-center'>
@@ -76,7 +84,7 @@ const Job = () => {
       {
         job?.recruiter_id === user?.id && <Select onValueChange={handleStatusChange}>
           <SelectTrigger className={`w-full ${job?.isOpen ? "bg-green-800" : "bg-red-700"}`}>
-            <SelectValue placeholder={ (job?.isOpen ? <p className='tracking-widest'>Hiring Status ( Open )</p> : <p className='tracking-widest'>Hiring Status ( Closed )</p>)
+            <SelectValue placeholder={(job?.isOpen ? <p className='tracking-widest'>Hiring Status ( Open )</p> : <p className='tracking-widest'>Hiring Status ( Closed )</p>)
             } />
           </SelectTrigger>
           <SelectContent>
@@ -106,9 +114,20 @@ const Job = () => {
         job?.applications?.length > 0 && job?.recruiter_id === user?.id && (
           <div className='flex flex-col gap-2'>
             <h2 className='text-2xl sm:text-3xl font-bold mb-3'>Applications</h2>
-            {job?.applications.map((application) => {
-              return <ApplicationCard key={application.id} application={application} />
-            })}
+
+            {paginatedApplications.map((application) => (
+              <ApplicationCard key={application.id} application={application} />
+            ))}
+
+            {totalPages > 1 && (
+              <div className="mt-6 flex justify-center">
+                <Pagination
+                  currentPage={page}
+                  totalPages={totalPages}
+                  onPageChange={setPage}
+                />
+              </div>
+            )}
           </div>
         )
       }
