@@ -4,7 +4,7 @@ JobReady is a full-stack job portal application designed to connect job seekers 
 
 The application is built using React and Vite for the frontend, Supabase for backend services and database operations, and Clerk for secure user authentication. It follows a scalable architecture with reusable components, API integration, and a responsive design for both desktop and mobile devices.
 
-## Tech Stack
+## 🛠Tech Stack
 
 ### Frontend
 - React.js
@@ -21,7 +21,7 @@ The application is built using React and Vite for the frontend, Supabase for bac
 ### Deployment
 - Vercel
 
-## Features
+## 🚀Features
 
 - Secure user authentication and authorization using Clerk
 - Browse and search job listings
@@ -32,7 +32,7 @@ The application is built using React and Vite for the frontend, Supabase for bac
 - Responsive design for desktop, tablet, and mobile devices
 - Clean and reusable component-based architecture
 
-## Project Structure
+## 📁Project Structure
 
 - src/components → Reusable UI components
 - src/pages → Application pages
@@ -41,7 +41,7 @@ The application is built using React and Vite for the frontend, Supabase for bac
 - src/utils → Helper and utility functions
 - src/assets → Images and static resources
 
-## Installation
+## 📦Installation
 
 ### Clone the repository
 - git clone https://github.com/Prasant678/Job_Portal_ReactJS.git
@@ -62,12 +62,12 @@ Create a .env file in the root directory and add the following:
 #### Open the application in your browser:
 - http://localhost:5173
 
-## Build for Production
+## 🏗Build for Production
 
 - npm run build
 - npm run preview
 
-## Environment Variables
+## 🔐Environment Variables
 
 ### The following files should not be pushed to GitHub:
 - .env
@@ -79,11 +79,11 @@ Create a .env file in the root directory and add the following:
 - Open Environment Variables
 - Add all values from your local .env
 
-## Deployment
+## 🌐Deployment
 
 The project is deployed on Vercel. Whenever changes are pushed to the main branch, Vercel automatically rebuilds and deploys the latest version.
 
-## 👨‍💻Author
+## 💼Author
 
 G Prasant
 MERN Stack Developer
