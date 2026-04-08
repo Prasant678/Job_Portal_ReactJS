@@ -11,7 +11,6 @@ The application is built using React and Vite for the frontend, Supabase for bac
 - Vite
 - JavaScript
 - Tailwind CSS
-- React Router DOM
 - Axios
 
 ### Backend / Services
