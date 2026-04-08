@@ -1,104 +1,89 @@
-JobReady App
+# JobReady - Full-Stack Job Portal
 
-A full-stack job portal application built with React, Vite, Supabase, and Clerk Authentication. JobReady helps users explore job opportunities, apply for jobs, save listings, and manage their profile through a clean and responsive interface.
+JobReady is a full-stack job portal application designed to connect job seekers with recruiters through a simple and modern interface. The platform allows users to browse available jobs, save opportunities, apply directly, and manage their profile from a personalized dashboard.
 
-🚀 Features
+The application is built using React and Vite for the frontend, Supabase for backend services and database operations, and Clerk for secure user authentication. It follows a scalable architecture with reusable components, API integration, and a responsive design for both desktop and mobile devices.
 
-Secure user authentication with Clerk
-Browse and search job listings
-Apply for jobs directly from the platform
-Save jobs for later
-Personalized user dashboard
-Responsive design for mobile, tablet, and desktop
-Real-time backend integration with Supabase
-Fast and optimized frontend using React + Vite
+## Tech Stack
 
-🛠 Tech Stack
+### Frontend
+- React.js
+- Vite
+- JavaScript
+- Tailwind CSS
+- React Router DOM
+- Axios
 
-React.js
-Vite
-JavaScript
-Tailwind CSS
-React Router DOM
-Axios
-Supabase
-Clerk Authentication
-📦 Installation & Setup
+### Backend / Services
+- Supabase
+- Clerk Authentication
 
-Clone the repository:
+### Deployment
+- Vercel
 
-git clone https://github.com/Prasant678/Job_Portal_ReactJS.git
+## Features
 
-cd Job_Portal_ReactJS
+- Secure user authentication and authorization using Clerk
+- Browse and search job listings
+- Save jobs for later
+- Apply for jobs directly from the platform
+- Personalized dashboard for users
+- Real-time data management with Supabase
+- Responsive design for desktop, tablet, and mobile devices
+- Clean and reusable component-based architecture
 
-Install dependencies:
+## Project Structure
 
-npm install
+- src/components → Reusable UI components
+- src/pages → Application pages
+- src/hooks → Custom React hooks
+- src/api → API calls and Supabase logic
+- src/utils → Helper and utility functions
+- src/assets → Images and static resources
 
-Create a .env file in the root directory and add the following variables:
+## Installation
 
-VITE_SUPABASE_URL=your_supabase_url
+### Clone the repository
+- git clone https://github.com/Prasant678/Job_Portal_ReactJS.git
+- cd Job_Portal_ReactJS
 
-VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+### Install dependencies
+- npm install
 
-VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+### Create Environment Variables
+Create a .env file in the root directory and add the following:
+- VITE_SUPABASE_URL=your_supabase_url
+- VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+- VITE_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
 
-Start the development server:
+### Run the development server
+- npm run dev
 
-npm run dev
+#### Open the application in your browser:
+- http://localhost:5173
 
-Open the app in your browser:
+## Build for Production
 
-http://localhost:5173
+- npm run build
+- npm run preview
 
-🏗 Build for Production
+## Environment Variables
 
-npm run build
+### The following files should not be pushed to GitHub:
+- .env
+- .env.local
+- .env.production
 
-Preview the production build locally:
+### Add the same environment variables manually inside Vercel:
+- Go to Project Settings
+- Open Environment Variables
+- Add all values from your local .env
 
-npm run preview
+## Deployment
 
-📁 Project Structure
+The project is deployed on Vercel. Whenever changes are pushed to the main branch, Vercel automatically rebuilds and deploys the latest version.
 
-src/
-├── components/ → Reusable UI components
-├── pages/ → Application pages
-├── hooks/ → Custom React hooks
-├── api/ → API and Supabase logic
-├── utils/ → Utility functions
-├── assets/ → Images and static files
-├── App.jsx
-└── main.jsx
-
-🔐 Environment Variables
-
-These files should never be pushed to GitHub:
-
-.env
-.env.local
-.env.production
-
-Make sure the following lines exist in your .gitignore:
-
-.env
-.env.*
-!.env.example
-
-For deployment on Vercel:
-
-Open your Vercel project
-Go to Settings → Environment Variables
-Add the same values from your local .env file
-Redeploy the project
-🌐 Deployment
-
-This project is deployed on Vercel.
-
-Whenever you push changes to the main branch, Vercel automatically detects the new commit and redeploys the latest version.
-
-👨‍💻 Author
+## Author
 
 G Prasant
 MERN Stack Developer
-Passionate about building responsive and user-friendly web applications
