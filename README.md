@@ -3,6 +3,7 @@ JobReady App
 A full-stack job portal application built with React, Vite, Supabase, and Clerk Authentication. JobReady helps users explore job opportunities, apply for jobs, save listings, and manage their profile through a clean and responsive interface.
 
 🚀 Features
+
 Secure user authentication with Clerk
 Browse and search job listings
 Apply for jobs directly from the platform
@@ -11,7 +12,9 @@ Personalized user dashboard
 Responsive design for mobile, tablet, and desktop
 Real-time backend integration with Supabase
 Fast and optimized frontend using React + Vite
+
 🛠 Tech Stack
+
 React.js
 Vite
 JavaScript
