@@ -83,7 +83,7 @@ Create a .env file in the root directory and add the following:
 
 The project is deployed on Vercel. Whenever changes are pushed to the main branch, Vercel automatically rebuilds and deploys the latest version.
 
-## Author
+## 👨‍💻Author
 
 G Prasant
 MERN Stack Developer
