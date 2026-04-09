@@ -31,6 +31,16 @@ The application is built using React and Vite for the frontend, Supabase for bac
 - Responsive design for desktop, tablet, and mobile devices
 - Clean and reusable component-based architecture
 
+## 🔥Key Contributions
+- Built a responsive job portal interface using React.js, Vite, and Tailwind CSS
+- Integrated Clerk Authentication for secure login, signup, and user management
+- Connected Supabase for real-time database operations and backend services
+- Implemented job search, save, and apply functionality for users
+- Developed reusable React components and organized project structure for scalability
+- Managed API communication and asynchronous operations using Axios
+- Configured environment variables and deployed the application on Vercel
+- Designed a mobile-friendly and responsive UI for seamless experience across devices
+
 ## 📁Project Structure
 
 - src/components → Reusable UI components
